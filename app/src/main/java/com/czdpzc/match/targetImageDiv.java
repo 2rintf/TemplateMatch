@@ -1,14 +1,14 @@
 package com.czdpzc.match;
-import com.sun.imageio.plugins.jpeg.JPEG;
+//import com.sun.imageio.plugins.jpeg.JPEG;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
-import org.opencv.highgui.Highgui;
+//import org.opencv.highgui.Highgui;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+//import javax.imageio.ImageIO;
+//import java.awt.image.BufferedImage;
 import java.io.*;
 
 

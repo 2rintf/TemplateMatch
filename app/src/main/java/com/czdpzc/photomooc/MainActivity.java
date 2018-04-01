@@ -58,6 +58,8 @@ public class MainActivity extends Activity {
 
     public void choosePic(View view){
         startActivity(new Intent(this,choosePic.class));
+
+
     }
 
     public void rectPhoto(View view){
@@ -65,9 +67,7 @@ public class MainActivity extends Activity {
     }
 
 
-
-
-//    @Override
+    //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 //        if(resultCode==RESULT_OK){
