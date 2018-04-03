@@ -62,9 +62,7 @@ public class MainActivity extends Activity {
 
     }
 
-    public void rectPhoto(View view){
-        startActivity(new Intent(this,RectPhoto.class));
-    }
+
 
     public void testActivity(View view){
         startActivity(new Intent(this,testActivity.class));

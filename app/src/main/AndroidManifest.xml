@@ -21,7 +21,6 @@
 
         <activity android:name=".customCamera"/>
         <activity android:name=".resultAty"/>
-        <activity android:name=".RectPhoto"/>
         <activity android:name=".choosePic"/>
         <activity android:name=".testActivity"/>
     </application>
