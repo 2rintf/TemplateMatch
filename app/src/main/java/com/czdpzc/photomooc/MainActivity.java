@@ -66,6 +66,10 @@ public class MainActivity extends Activity {
         startActivity(new Intent(this,RectPhoto.class));
     }
 
+    public void testActivity(View view){
+        startActivity(new Intent(this,testActivity.class));
+    }
+
 
     //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {

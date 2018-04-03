@@ -9,14 +9,19 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Capture"
-        android:onClick="capture"/>
+        android:onClick="capture"
+        android:text="Capture" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <SurfaceView
             android:id="@+id/preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <com.czdpzc.photomooc.DrawImageView
+            android:id="@+id/drawview"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -25,14 +30,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="55dp"
+            android:layout_marginBottom="56dp"
             android:text="welcome to my camera"
             android:textColor="#e10a0a"
             android:textSize="20sp" />
 
 
     </RelativeLayout>
-
 
 
 </LinearLayout>

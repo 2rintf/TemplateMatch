@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.hardware.Camera;
@@ -18,6 +19,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+
+import com.czdpzc.photomooc.DrawImageView;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -38,6 +41,7 @@ public class customCamera extends Activity implements SurfaceHolder.Callback{
 
     private Camera mCamera;
     private SurfaceView mPreview;
+    private DrawImageView mDrawView;
     private SurfaceHolder mHolder;
     private Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
         @Override
@@ -119,6 +123,9 @@ public class customCamera extends Activity implements SurfaceHolder.Callback{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_layout);
+
+        mDrawView = (com.czdpzc.photomooc.DrawImageView) findViewById(R.id.drawview);
+        mDrawView.onDraw(new Canvas());
 
         mPreview = (SurfaceView) findViewById(R.id.preview);
         mHolder = mPreview.getHolder();
