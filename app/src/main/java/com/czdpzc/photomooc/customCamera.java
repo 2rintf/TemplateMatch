@@ -169,6 +169,7 @@ public class customCamera extends Activity implements SurfaceHolder.Callback{
         Camera.Parameters parameters = mCamera.getParameters();
 //        Display display = wm.getDefaultDisplay();
         parameters.setPictureFormat(ImageFormat.JPEG);
+        parameters.setFlashMode(Camera.Parameters.FLASH_MODE_AUTO);//闪光灯自动
 
 //        parameters.setJpegQuality(85);
 //        parameters.setPreviewSize(display.getWidth(),display.getHeight());
