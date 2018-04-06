@@ -12,6 +12,12 @@
         android:text="Test Result"
         android:gravity="center"
         android:textSize="30sp"/>
+    <TextView
+        android:id="@+id/text2show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"/>
 
     <ImageView
         android:id="@+id/testPic"

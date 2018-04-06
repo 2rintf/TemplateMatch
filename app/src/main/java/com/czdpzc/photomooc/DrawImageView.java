@@ -24,9 +24,9 @@ public class DrawImageView extends ImageView {
     Paint paint = new Paint();
     {
         paint.setAntiAlias(true);
-        paint.setColor(Color.RED);
+        paint.setColor(0xf1ed04);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(2.5f);//设置线宽
+        paint.setStrokeWidth(4f);//设置线宽
         paint.setAlpha(100);
     };
 
@@ -34,6 +34,6 @@ public class DrawImageView extends ImageView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawRect(new Rect(100,200,400,500), paint);
+        canvas.drawRect(new Rect(200,450,550,600), paint);
     }
 }

@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class ncc {
 
-    static{ System.loadLibrary(Core.NATIVE_LIBRARY_NAME); }
+//    static{ System.loadLibrary(Core.NATIVE_LIBRARY_NAME); }
 
     private Mat image1 = new Mat();//目标图片
     private Mat image2 = new Mat();//模板图片
@@ -30,31 +30,6 @@ public class ncc {
 
     public void getTemp(Mat image2){
         this.image2 = image2;
-    }
-
-    /**
-     * 将字符串写入.txt文件，测试用
-     * @param str
-     * @throws Exception
-     */
-    public static void  write2Txt(String str) throws Exception{
-        FileWriter fw = null;
-        String path = "C:\\Users\\2b\\Desktop\\match_log.txt";
-        File f = new File(path);
-        try {
-            if (!f.exists()) {
-                f.createNewFile();
-            }
-            fw = new FileWriter(f);
-            BufferedWriter out = new BufferedWriter(fw);
-            // FileOutputStream fos = new FileOutputStream(f);
-            // OutputStreamWriter out = new OutputStreamWriter(fos, "UTF-8");
-            out.write(str.toString());
-            out.close();
-            System.out.println("===========写入文本成功========");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -111,13 +86,6 @@ public class ncc {
             //对结果进行归一化
             //     Core.normalize(g_result,g_result,0,1,Core.NORM_MINMAX,-1,new Mat());
 
-//        //将匹配结果矩阵写为.txt文件，测试用
-//        try {
-//            write2Txt(g_result.dump());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
             /**
              * g_result存储的是每一次匹配完的数值，
              * 当匹配结束后，这个矩阵中各个数值的位置，就是实际上每一个模板位于原图的像素坐标
@@ -151,24 +119,4 @@ public class ncc {
         return bestValue;
     }
 
-
-
-//    public static void main(String []args){
-//
-//        Mat i1 = new Mat();//目标
-//        Mat i2 = new Mat();//模板
-//
-//        i1 = Imgcodecs.imread("D:\\tempMatch\\src\\Sample_czd\\match_area\\1_div.jpg");
-//        i2 = Imgcodecs.imread("D:\\tempMatch\\src\\Sample_czd\\temp\\9\\5.jpg");
-//
-//        double num = 0;
-//
-//        ncc Process = new ncc();
-//        Process.getTarget(i1);
-//        Process.getTemp(i2);
-//        Process.checkGrayOrNot();
-//        num = Process.nccProcess();
-//
-//        System.out.println(num);
-//    }
 }

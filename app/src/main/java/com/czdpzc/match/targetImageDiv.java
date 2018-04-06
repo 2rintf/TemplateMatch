@@ -1,5 +1,14 @@
 package com.czdpzc.match;
 //import com.sun.imageio.plugins.jpeg.JPEG;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Environment;
+import android.util.Log;
+
+import com.czdpzc.photomooc.R;
+
+import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
@@ -16,9 +25,9 @@ import static org.opencv.imgcodecs.Imgcodecs.imread;
 import static org.opencv.imgcodecs.Imgcodecs.imwrite;
 
 
-public class targetImageDiv {
+public class targetImageDiv extends Activity{
 
-    static{ System.loadLibrary(Core.NATIVE_LIBRARY_NAME); }
+//    static{ System.loadLibrary(Core.NATIVE_LIBRARY_NAME); }
 
     private  Mat targetImg = new Mat();
     static int startCol = 0;
@@ -27,13 +36,29 @@ public class targetImageDiv {
         this.targetImg = targetImg;
     }
 
-//    /**
-//     * 获取目标图片
-//     * @param targetImg
-//     */
-//    public void getImage(Mat targetImg){
-//        this.targetImg = targetImg;
-//    }
+    public void saveJpeg(Bitmap bm,String path,int num){
+        String savePath = path;
+        File folder = new File(savePath);
+        if(!folder.exists()) //如果文件夹不存在则创建
+        {
+            folder.mkdir();
+        }
+        int dataTake = num;
+        String jpegName = savePath +"/"+ dataTake +".jpg";
+//        Log.i("fuck", "saveJpeg:jpegName--" + jpegName);
+        //File jpegFile = new File(jpegName);
+        try {
+            FileOutputStream fout = new FileOutputStream(jpegName);
+            BufferedOutputStream bos = new BufferedOutputStream(fout);
+            bm.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            bos.flush();
+            bos.close();
+//            Log.i("fuck", "saveJpeg：存储完毕！");
+        } catch (IOException e) {
+            Log.i("fuck", "saveJpeg:存储失败！");
+            e.printStackTrace();
+        }
+    }
 
 
     public  int stringToInt(String string){
@@ -134,7 +159,13 @@ public class targetImageDiv {
 
             roiImg.copyTo(tmpImg);
 
-            imwrite(".\\src\\Sample_czd\\div_pic\\" + (j + 1) + ".jpg", tmpImg);
+            Bitmap bitmaphelper = Bitmap.createBitmap(roiWidth,roiImg.height(),Bitmap.Config.ARGB_8888);
+            String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath()+"/TemplateMatch/div_pic";
+            Utils.matToBitmap(tmpImg,bitmaphelper);
+            saveJpeg(bitmaphelper,path,(j+1));
+
+
+//            imwrite(".\\src\\Sample_czd\\div_pic\\" + (j + 1) + ".jpg", tmpImg);
         }
     }
     /**
@@ -149,7 +180,7 @@ public class targetImageDiv {
         Imgproc.cvtColor(targetImg,gImg,Imgproc.COLOR_RGB2GRAY);
         Imgproc.equalizeHist(gImg,histImg);
         Imgproc.threshold(gImg,gImg,35,255,Imgproc.THRESH_BINARY);
-        imwrite("C:\\Users\\2b\\Desktop\\surprise.jpg",gImg);
+//        imwrite("C:\\Users\\2b\\Desktop\\surprise.jpg",gImg);
 
         System.out.println("----------------------");
         System.out.println("目标图片分割开始");
@@ -178,20 +209,5 @@ public class targetImageDiv {
       //  return roiWidth;
 
     }
-
-
-
-
-//    public static void main(String []args){
-//
-//        Mat i1 = new Mat();
-//        i1 = Imgcodecs.imread("C:\\Users\\2b\\Desktop\\new try\\1.jpg");
-//
-//        targetImageDiv test = new targetImageDiv(i1);
-//
-//       // test.getImage(i1);
-//        test.getOne();
-//
-//    }
 
 }

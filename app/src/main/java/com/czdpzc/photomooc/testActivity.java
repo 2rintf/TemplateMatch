@@ -1,14 +1,19 @@
 package com.czdpzc.photomooc;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.czdpzc.match.*;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
@@ -23,6 +28,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.Buffer;
 
 /**
@@ -73,23 +81,85 @@ public class testActivity extends Activity {
         OpenCVLoader.initDebug();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_activity_layout);
-
-        OpenCVLoader.initDebug();
+        TextView textView = (TextView) findViewById(R.id.text2show);
         mImageview = (ImageView) findViewById(R.id.testPic);
-
-        Mat i1 = new Mat();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.photo_img_btn);
-
-
-        Utils.bitmapToMat(bitmap,i1);
+        Context context = this.getApplicationContext();
 
 
 
+        InputStream is = new InputStream() {
+            @Override
+            public int read() throws IOException {
+                return 0;
+            }
+        };
+        FileInputStream fis = null;
+        Mat targetImg = new Mat();
+        Mat imgDived = new Mat();
+        char[] matchedChar = new char[4];
+        String path1 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath()+"/TemplateMatch/div_pic";
+        String path2;
+
+
+        is = context.getClassLoader().getResourceAsStream("assets/Sample_czd/match_area/"+"1.jpg");
+        Bitmap bitmap1 = BitmapFactory.decodeStream(is);
+        Utils.bitmapToMat(bitmap1,targetImg);
+
+//        Imgproc.cvtColor(targetImg,targetImg,Imgproc.COLOR_RGB2GRAY);
+//        Bitmap bitmap2 = Bitmap.createBitmap(bitmap1.getWidth(),bitmap1.getHeight(),Bitmap.Config.ARGB_8888);
+//        Utils.matToBitmap(targetImg,bitmap2);
+
+        Log.d("fuck","--------------");
+        Log.d("fuck","开始匹配");
+        Log.d("fuck","--------------");
+
+        targetImageDiv divImg = new targetImageDiv(targetImg);
+        divImg.getOne();//分割
+        for (int j=1; j<=4; j++){
+            path2 = path1 +"/"+ j+ ".jpg";
+            try {
+                fis = new FileInputStream(path2);
+                Bitmap bitmap2 = BitmapFactory.decodeStream(fis);
+                Utils.bitmapToMat(bitmap2,imgDived);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.d("fuck","匹配过程读取分割后的字符图片出错");
+            }
+
+            selectTemp2Match selectTemp2Match = new selectTemp2Match(imgDived,context);
+            matchedChar[j-1] = selectTemp2Match.select2match();
+        }
+
+        textView.setText(matchedChar,0,4);
+
+        mImageview.setImageBitmap(bitmap1);
+
+
+
+
+
+
+
+
+//        String path = "/Sample_czd/temp";
+//        File file = new File(path);
+//        try {
+//            //一定要有context上下文，不然读不出文件夹数量
+//            String[] strArray= context.getAssets().list("Sample_czd/temp");
+//            int num = strArray.length;
+//            Log.d("fuck","模板种类数量："+num);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+
+
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.photo_img_btn);
+//        Utils.bitmapToMat(bitmap,i1);
 //        i1 = Imgcodecs.imread("/res/drawable/photo_img_btn.jpg");
-
-        Imgproc.cvtColor(i1,i1,Imgproc.COLOR_RGB2GRAY);
-
-        Utils.matToBitmap(i1,bitmap);
+//        Imgproc.cvtColor(i1,i1,Imgproc.COLOR_RGB2GRAY);
+//        Utils.matToBitmap(i1,bitmap);
 
 //        Bitmap bitmap = BitmapFactory.decodeStream(getClass().getResourceAsStream("src/Sample_czd/match_area/1.jpg"));
 //        Bitmap bitmap = BitmapFactory.decodeStream(getClass().getResourceAsStream("res/drawable/photo_img_btn.png"));
@@ -100,7 +170,7 @@ public class testActivity extends Activity {
 //        Bitmap bmp = Bitmap.createBitmap(i1.width(),i1.height(),Bitmap.Config.RGB_565);
 
 
-        mImageview.setImageBitmap(bitmap);
+//        mImageview.setImageBitmap(bitmap2);
 
     }
 }

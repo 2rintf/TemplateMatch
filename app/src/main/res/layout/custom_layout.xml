@@ -30,10 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="56dp"
-            android:text="welcome to my camera"
-            android:textColor="#e10a0a"
-            android:textSize="20sp" />
+            android:layout_marginBottom="128dp"
+            android:text="请将字符区域放置于矩形框中"
+            android:textColor="#f1ed04"
+            android:textSize="25sp" />
 
 
     </RelativeLayout>
