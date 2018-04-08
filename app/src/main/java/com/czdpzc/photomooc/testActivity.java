@@ -21,6 +21,7 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Point;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
@@ -99,6 +100,8 @@ public class testActivity extends Activity {
         char[] matchedChar = new char[4];
         String path1 = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath()+"/TemplateMatch/div_pic";
         String path2;
+        char firstNum;
+        Point bestLoc = new Point();
 
 
         is = context.getClassLoader().getResourceAsStream("assets/Sample_czd/match_area/"+"1.jpg");
@@ -112,10 +115,19 @@ public class testActivity extends Activity {
         Log.d("fuck","--------------");
         Log.d("fuck","开始匹配");
         Log.d("fuck","--------------");
+        long startTime = System.nanoTime();
 
-        targetImageDiv divImg = new targetImageDiv(targetImg);
+        firstGPS fg = new firstGPS(targetImg,context);
+        firstNum = fg.select2match();
+        bestLoc = fg.getBestLoc();
+        Mat showImg = fg.firstGPSCut(bestLoc);
+
+
+
+        targetImageDiv divImg = new targetImageDiv(showImg);
         divImg.getOne();//分割
-        for (int j=1; j<=4; j++){
+        //不匹配第一个数字，直接从第二个字符开始
+        for (int j=2; j<=4; j++){
             path2 = path1 +"/"+ j+ ".jpg";
             try {
                 fis = new FileInputStream(path2);
@@ -130,7 +142,10 @@ public class testActivity extends Activity {
             matchedChar[j-1] = selectTemp2Match.select2match();
         }
 
+        matchedChar[0] = firstNum;
         textView.setText(matchedChar,0,4);
+        long consumingTime = System.nanoTime()-startTime;
+        Log.d("fuck",consumingTime/1000000+"ms");
 
         mImageview.setImageBitmap(bitmap1);
 

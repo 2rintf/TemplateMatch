@@ -40,6 +40,7 @@ public class selectTemp2Match extends Activity{
 
     private Mat targetImg = new Mat();
     Context context;
+    private char[] charTemplate = {'A','F','L','P','R'};
 
 
     /**
@@ -140,49 +141,51 @@ public class selectTemp2Match extends Activity{
         double[] matchNum = new double[200];
 
         try {
-            /**
-             * 模板文件夹数量的获取
-             */
-            String[] strArray = context.getAssets().list(path1);
-            int num1 = strArray.length;
-            System.out.println("----------------------");
-            System.out.println("模板种类数量：" + num1);
 
-            /**
-             * 模板文件夹种类的获取
-             */
-            for (int x=0;x<=strArray.length-1;x++) {
-                // System.out.printf(strArray[x].toString());
-                stringTest = stringTest + strArray[x].toString();
-            }
-            System.out.println("");
-
-            /**
-             * 若要获取种类，使用charArray[]
-             */
-            charArray = stringTest.toCharArray();
-            System.out.println("模板种类：");
-            System.out.print(charArray);
-
-            System.out.println("");
-            System.out.println("----------------------");
-
-            /**
-             * 若要获取种类，使用charArray[]
-             */
-            charArray = stringTest.toCharArray();
-            System.out.println("模板种类：");
-            System.out.print(charArray);
-
-            System.out.println("");
-            System.out.println("----------------------");
+            int num1 = charTemplate.length;
+//            /**
+//             * 模板文件夹数量的获取
+//             */
+//            String[] strArray = context.getAssets().list(path1);
+//            int num1 = strArray.length;
+//            System.out.println("----------------------");
+//            System.out.println("模板种类数量：" + num1);
+//
+//            /**
+//             * 模板文件夹种类的获取
+//             */
+//            for (int x=0;x<=strArray.length-1;x++) {
+//                // System.out.printf(strArray[x].toString());
+//                stringTest = stringTest + strArray[x].toString();
+//            }
+//            System.out.println("");
+//
+//            /**
+//             * 若要获取种类，使用charArray[]
+//             */
+//            charArray = stringTest.toCharArray();
+//            System.out.println("模板种类：");
+//            System.out.print(charArray);
+//
+//            System.out.println("");
+//            System.out.println("----------------------");
+//
+//            /**
+//             * 若要获取种类，使用charArray[]
+//             */
+//            charArray = stringTest.toCharArray();
+//            System.out.println("模板种类：");
+//            System.out.print(charArray);
+//
+//            System.out.println("");
+//            System.out.println("----------------------");
 
             /**
              * 1.获取模板文件夹中照片的数量和名称
              * 2.每一个for循环结束，代表一个种类的模板全部匹配过一次
              */
             for (int i=0;i<=num1-1;i++){
-                path2 = path1+"/"+charArray[i];
+                path2 = path1+"/"+charTemplate[i];
                 //    System.out.println("模板文件夹位置："+path2);
 
 //                File file2 = new File(path2);
@@ -265,7 +268,7 @@ public class selectTemp2Match extends Activity{
             /**
              * 获取最大值位置对应的字母，即为匹配结果
              */
-            matchedChar = charArray[LocOfMac];
+            matchedChar = charTemplate[LocOfMac];
             //  System.out.println("匹配结果："+matchedChar);
             //  System.out.println("-----------------------------");
 
