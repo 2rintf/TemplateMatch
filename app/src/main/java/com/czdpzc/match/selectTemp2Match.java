@@ -6,6 +6,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.czdpzc.photomooc.testActivity;
 
@@ -192,16 +193,16 @@ public class selectTemp2Match extends Activity{
 //                String[] strArray = context.getAssets().list(path1);
 //                String[] strArray2 = file2.list();
                 String[] strArray2 = context.getAssets().list(path2);
-                String[] stringTest2 = new String[1000];
+                String[] stringTest2 = new String[200];
 
                 /**
                  * 模板文件夹中的模板数量 N
                  */
                 int N=strArray2.length;
                 int finalN = N;//用来得到正确的除数，因为采用了跳过模板的方法
-                System.out.println("----------------------");
-                System.out.println("模板文件夹中的照片数量:"+N);
-                System.out.println("----------------------");
+                Log.d("fuck","----------------------");
+                Log.d("fuck","模板文件夹中的照片数量:"+N);
+                Log.d("fuck","----------------------");
 
 //                /**
 //                 * 用来存储每一张图片的匹配值，用来求均值，然后送给matchNum2Compare
@@ -243,20 +244,20 @@ public class selectTemp2Match extends Activity{
 
 //                    System.out.println("再次确认数值："+matchNum[j]);
                     }
-                    System.out.println("----------------------");
+                    Log.d("fuck","----------------------");
 
                     matchNum2Compare[i] = avgOfArray(matchNum,finalN);
 //                matchNum2Compare[i] = maxOfArray(matchNum,finalN);
 
-                    System.out.println("此模板匹配均值为："+avgOfArray(matchNum,finalN));
+                    Log.d("fuck","此模板匹配均值为："+avgOfArray(matchNum,finalN));
 //                System.out.println("此模板匹配的最大值为："+maxOfArray(matchNum,finalN));
                 }
 
                 else {
-                    System.out.println("此文件夹无照片");
-                    System.out.println("-----------------------");
+                    Log.d("fuck","此文件夹无照片");
+                    Log.d("fuck","-----------------------");
                     matchNum2Compare[i] = -1;
-                    System.out.println("此模板匹配均值为：null");
+                    Log.d("fuck","此模板匹配均值为：null");
 //                System.out.println("-----------------------");
                 }
 

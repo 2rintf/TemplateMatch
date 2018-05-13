@@ -6,17 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+
+    <Button
+        android:id="@+id/showImgBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="choose result"
-        android:gravity="center"/>
-
-    <ImageView
-        android:id="@+id/imv"
-        android:scaleType="fitCenter"
+        android:onClick="showImg"
+        android:text="直接展示所选图片"/>
+    <Button
+        android:id="@+id/matchBtn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:onClick="matchImg"
+        android:text="直接匹配所选图片"/>
+
 
 
 

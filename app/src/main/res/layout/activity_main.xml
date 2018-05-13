@@ -11,13 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="customCamera"
-        android:text="CustomCamera"  />
+        android:text="自定义相机拍摄演示"  />
     <Button
         android:id="@+id/btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="choosePic"
-        android:text="Choose Pic"/>
+        android:text="选择图片演示"/>
 
 
     <Button
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="testActivity"
-        android:text="bitmap reading test"/>
+        android:text="匹配演示"/>
 
 
 </LinearLayout>

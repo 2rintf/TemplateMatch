@@ -13,7 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-/**结果
+/**匹配结果
  * Created by 2b on 2018/3/31.
  */
 

@@ -1,6 +1,8 @@
 package com.czdpzc.match;
 
 
+import android.util.Log;
+
 import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
@@ -61,7 +63,7 @@ public class ncc {
             // OutputStreamWriter out = new OutputStreamWriter(fos, "UTF-8");
             out.write(str.toString());
             out.close();
-            System.out.println("===========写入文本成功========");
+            Log.d("fuck","===========写入文本成功========");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,8 +105,8 @@ public class ncc {
         int result_cols=(int) (c1-c2+1);
 
         if (result_rows<=0 || result_cols<=0){
-            System.out.println("-------------------------");
-            System.out.println("跳过一张模板");
+            Log.d("fuck","-------------------------");
+            Log.d("fuck","跳过一张模板");
 //            System.out.println("-------------------------");
             bestValue = -10;
         }

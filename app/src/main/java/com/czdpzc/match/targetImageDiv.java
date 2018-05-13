@@ -149,10 +149,17 @@ public class targetImageDiv extends Activity{
     public  void cutImg(int roiWidth,Mat targetImg){
         int height = targetImg.rows();
         int width = roiWidth;
+        int helper = targetImg.cols()-3*width;
+
 
         for (int j=0;j<4;j++) {
             int a = j * width ;
             int b = 0;
+            if (j == 3 && width > helper){
+                width = targetImg.cols() - (j)*width;
+                System.out.println("fuck"+targetImg.cols()+"   "+width+"  "+j);
+
+            }
             Rect rect = new Rect(a, b, width, height);
             Mat roiImg = new Mat(targetImg, rect);
             Mat tmpImg = new Mat();
@@ -182,15 +189,15 @@ public class targetImageDiv extends Activity{
         Imgproc.threshold(gImg,gImg,35,255,Imgproc.THRESH_BINARY);
 //        imwrite("C:\\Users\\2b\\Desktop\\surprise.jpg",gImg);
 
-        System.out.println("----------------------");
-        System.out.println("目标图片分割开始");
-        System.out.println("----------------------");
+        Log.d("fuck","----------------------");
+        Log.d("fuck","目标图片分割开始");
+        Log.d("fuck","----------------------");
         int psum = 0;
         for (int i=0;i<gImg.cols();i++){
             psum+=getColSum(gImg,i);
         }
-        System.out.println("灰度值总和："+psum);
-        System.out.println("列数："+gImg.cols());
+        Log.d("fuck","灰度值总和："+psum);
+        Log.d("fuck","列数："+gImg.cols());
 
         /**
          * 将double类型先转成string再转成int，这样比较保险
@@ -198,14 +205,14 @@ public class targetImageDiv extends Activity{
         double Tsum =  0.5*(psum/gImg.cols());
         String double2str =String.valueOf(Tsum);
         int Tsum_int = stringToInt(double2str);
-        System.out.println("阈值："+Tsum_int);
+        Log.d("fuck","阈值："+Tsum_int);
 
         int roiWidth = cutLeft(gImg,Tsum_int,0);
 
         cutImg(roiWidth,targetImg);
-        System.out.println("-----------------------");
-        System.out.println("图片分割结束");
-        System.out.println("-----------------------");
+        Log.d("fuck","-----------------------");
+        Log.d("fuck","图片分割结束");
+        Log.d("fuck","-----------------------");
       //  return roiWidth;
 
     }
