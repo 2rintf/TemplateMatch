@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="casual"
+        android:lineSpacingExtra="10sp"
+        android:text="基于手持终端的汽车车门限位器型号识别系统的研究和实现"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:typeface="monospace" />
+
     <Button
         android:id="@+id/btn1"
         android:layout_width="match_parent"
@@ -26,6 +39,11 @@
         android:layout_height="wrap_content"
         android:onClick="testActivity"
         android:text="匹配演示"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="说明：\n 1.“自定义相机演示”可以演示自定义相机的取景框效果\n 2.“选择图片演示”可以从已有图片中选择显示或匹配\n 3.“匹配演示”采用默认图像演示匹配效果"/>
 
 
 </LinearLayout>

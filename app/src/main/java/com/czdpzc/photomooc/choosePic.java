@@ -67,10 +67,12 @@ public class choosePic extends Activity{
     }
 
     public void matchImg(View view){
-
-
-
+        Intent intent = new Intent(choosePic.this,choose2Match.class);
+        intent.putExtra("path",uri.toString());
+        Log.d("path",uri.toString());
+        startActivity(intent);
 
     }
+
 
 }

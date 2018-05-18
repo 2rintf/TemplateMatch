@@ -24,7 +24,8 @@
         <activity android:name=".resultAty" />
         <activity android:name=".choosePic" />
         <activity android:name=".testActivity" />
-        <activity android:name=".showImgActivity"></activity>
+        <activity android:name=".showImgActivity" />
+        <activity android:name=".choose2Match"></activity>
     </application>
 
 </manifest>

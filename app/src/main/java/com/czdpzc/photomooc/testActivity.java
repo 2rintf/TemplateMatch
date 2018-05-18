@@ -104,7 +104,7 @@ public class testActivity extends Activity {
         Point bestLoc = new Point();
 
 
-        is = context.getClassLoader().getResourceAsStream("assets/Sample_czd/match_area/"+"1.jpg");
+        is = context.getClassLoader().getResourceAsStream("assets/Sample_czd/match_area/"+"8.jpg");
         Bitmap bitmap1 = BitmapFactory.decodeStream(is);
         Utils.bitmapToMat(bitmap1,targetImg);
 

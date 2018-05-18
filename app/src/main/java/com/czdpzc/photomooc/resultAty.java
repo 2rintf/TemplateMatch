@@ -3,11 +3,12 @@ package com.czdpzc.photomooc;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.ImageView;
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -48,7 +49,18 @@ public class resultAty extends Activity{
 //                    Matrix matrix = new Matrix();
 //                    matrix.setRotate(90);//旋转90度矩阵
 //                    bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-                    imageView.setImageBitmap(bitmap);
+                    /**
+                     * 根据取景框大小，对原拍摄图片进行剪裁。
+                     * 坐标值需要修正。
+                     */
+                    Rect rect = new Rect(220,450,440,600);
+                    Bitmap cutImg = Bitmap.createBitmap(bitmap,870,1290,600,450);
+
+
+                    /**
+                     * 显示由取景框裁剪的图片
+                     */
+                    imageView.setImageBitmap(cutImg);
 
 //                    imageView.setImageBitmap(scaled);
                 } catch (FileNotFoundException e) {
